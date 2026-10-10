@@ -1,0 +1,210 @@
+.how-to-play-section {
+  padding: 80px 0;
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.how-to-play-header {
+  margin-bottom: 36px;
+}
+
+.how-to-play-lead {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 760px;
+  line-height: 1.6;
+}
+
+/* Selector de plataforma */
+.platform-toggle {
+  display: inline-flex;
+  gap: 8px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  padding: 6px;
+  border-radius: var(--radius-md);
+  margin-bottom: 28px;
+}
+
+.platform-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  min-height: 44px;
+}
+
+.platform-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.platform-btn.active {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+.platform-btn.active:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-accent-text);
+}
+
+/* Tarjeta contenedora de la guía */
+.platform-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.guide-summary-box {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.summary-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent-readable);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.summary-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.summary-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Pasos numerados */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.step-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-bg-surface);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent-readable);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-body {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.step-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.step-text strong {
+  color: var(--color-text-primary);
+}
+
+/* Caja de sugerencias */
+.guide-tip-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.tip-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.guide-tip-box strong {
+  color: var(--color-text-primary);
+}
+
+/* Fila de recursos externos */
+.guide-resource-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.resource-link-btn {
+  padding: 12px 20px;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 680px) {
+  .platform-card {
+    padding: 24px 18px;
+  }
+
+  .platform-toggle {
+    width: 100%;
+    display: flex;
+  }
+
+  .platform-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .guide-resource-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .resource-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

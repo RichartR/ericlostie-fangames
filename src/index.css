@@ -1,0 +1,282 @@
+/* ===================================================================
+   PORTAL OFICIAL DE ERIC LOSTIE | SISTEMA DE DISEÑO
+   Identidad cromática de Volcarona y Blog Oficial (https://lostiefangames.blogspot.com/)
+   Colores: Dorado mostaza insignia (#E5A823), blanco puro y bases neutras
+   Diseñado siguiendo las directrices Anti-Slop (R-01 a R-38)
+   =================================================================== */
+
+:root {
+  /* Tema Oscuro por defecto (Gaming con dorado insignia de Volcarona y Blog) */
+  --color-bg-base: #0b0f19;
+  --color-bg-surface: #111827;
+  --color-bg-card: #141d2e;
+  --color-bg-card-hover: #19243a;
+  --color-bg-elevated: #1f2b42;
+
+  --color-border: #1e293b;
+  --color-border-subtle: #162032;
+  --color-border-focus: #e5a823;
+
+  --color-accent: #e5a823;
+  --color-accent-hover: #fed766;
+  --color-accent-soft: rgba(229, 168, 35, 0.16);
+  --color-accent-text: #0b0f19;
+  --color-accent-readable: #fcd34d;
+
+  --color-complete: #10b981;
+  --color-complete-soft: rgba(16, 185, 129, 0.12);
+  --color-dev: #38bdf8;
+  --color-dev-soft: rgba(56, 189, 248, 0.12);
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  --header-bg: #0b0f19;
+  --header-border: #1e293b;
+  --header-text: #f8fafc;
+  --header-text-muted: #94a3b8;
+  --header-scrolled-bg: #0b0f19;
+  --header-cta-bg: var(--color-accent);
+  --header-cta-text: #0b0f19;
+  --header-cta-hover: var(--color-accent-hover);
+
+  --footer-bg: #070a12;
+
+  --watermark-opacity: 0.09;
+  --watermark-filter: none;
+
+  /* Patrón sutil para catálogo */
+  --catalog-pattern-opacity: 0.045;
+  --catalog-pattern-filter: none;
+
+  /* Tipografías */
+  --font-heading: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Elevaciones funcionales */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.65);
+
+  /* Transiciones suaves */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+
+  /* Radios de borde consistentes */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* Modo Claro opcional: Estética exacta del Blog Oficial (#E5A823) */
+[data-theme="light"] {
+  --color-bg-base: #f0f2f5;
+  --color-bg-surface: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #f8fafc;
+  --color-bg-elevated: #ffffff;
+
+  --color-border: #e2e8f0;
+  --color-border-subtle: #edf2f7;
+  --color-border-focus: #e5a823;
+
+  --color-accent: #e5a823;
+  --color-accent-hover: #d29415;
+  --color-accent-soft: rgba(229, 168, 35, 0.14);
+  --color-accent-text: #181308;
+  --color-accent-readable: #a16207;
+
+  --color-complete: #059669;
+  --color-complete-soft: rgba(5, 150, 105, 0.12);
+  --color-dev: #0284c7;
+  --color-dev-soft: rgba(2, 132, 199, 0.12);
+
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
+
+  --header-bg: #e5a823;
+  --header-border: #d4951b;
+  --header-text: #181308;
+  --header-text-muted: #3a2c09;
+  --header-scrolled-bg: #e5a823;
+  --header-cta-bg: #181308;
+  --header-cta-text: #ffffff;
+  --header-cta-hover: #000000;
+
+  --footer-bg: #e5e9f0;
+
+  --watermark-opacity: 0.065;
+  --watermark-filter: brightness(0);
+
+  /* Patrón sutil para catálogo */
+  --catalog-pattern-opacity: 0.045;
+  --catalog-pattern-filter: brightness(0);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+/* Reseteo y ajustes de base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Contenedor central adaptable */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* Enlaces y botones base */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Accesibilidad de foco por teclado (R-32) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Botones de acción estándar */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+  min-height: 44px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-accent-text);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  min-height: 44px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-text-secondary);
+}
+
+/* Badges con forma inclinada (paralelogramo) y bordes redondeados */
+.badge-status-completed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  border-radius: 5px;
+  transform: skewX(-12deg);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  line-height: 1.2;
+}
+
+.badge-status-dev {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background-color: #38bdf8;
+  color: #04243a;
+  border-radius: 5px;
+  transform: skewX(-12deg);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  line-height: 1.2;
+}

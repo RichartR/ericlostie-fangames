@@ -1,0 +1,25 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    # Se ejecuta cada 3 días a las 06:00 UTC para evitar la pausa por inactividad de 7 días
+    - cron: '0 6 */3 * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub cuando se desee
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        run: |
+          URL="${{ secrets.VITE_SUPABASE_URL || 'https://caogguzuymqgnulrweab.supabase.co' }}"
+          KEY="${{ secrets.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhb2dndXp1eW1xZ251bHJ3ZWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2MjQwMTAsImV4cCI6MjEwNzIwMDAxMH0.yw5OkSmKDnP3LAyh0xbtaKW8l4_l8uMfLrjlJPbpE3Y' }}"
+          
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$URL/rest/v1/games?select=id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+          
+          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 300 ]; then
+            echo "Ping exitoso a Supabase (HTTP $RESPONSE). Proyecto activo."
+          else
+            echo "Aviso: Respuesta HTTP $RESPONSE al conectar con Supabase."
+            exit 1
+          fi

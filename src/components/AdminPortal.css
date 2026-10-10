@@ -1,0 +1,1113 @@
+/* ===================================================================
+   PORTAL DE ADMINISTRACIÓN OCULTO (#admin)
+   =================================================================== */
+
+.admin-viewport {
+  min-height: 100vh;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Pantalla de Login --- */
+.admin-login-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-login-header {
+  text-align: center;
+}
+
+.admin-login-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.admin-login-logo {
+  height: 72px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  display: block;
+  user-select: none;
+}
+
+[data-theme="light"] .admin-login-logo {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+}
+
+.admin-login-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.admin-login-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-field-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.admin-input {
+  width: 100%;
+  height: 44px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.admin-textarea {
+  width: 100%;
+  min-height: 100px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.admin-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.admin-select {
+  width: 100%;
+  height: 44px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 0.9375rem;
+}
+
+.admin-error-banner {
+  background-color: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+}
+
+.admin-back-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: center;
+  transition: color var(--transition-fast);
+  padding: 8px;
+}
+
+.admin-back-btn:hover {
+  color: var(--color-text-primary);
+}
+
+/* --- Panel de Control Activo --- */
+.admin-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-badge-tag {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.admin-navbar-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.admin-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-user-pill {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-card);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.admin-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.admin-logout-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.admin-main-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Tabs de selección de juego */
+.admin-games-selector {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.admin-game-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.admin-game-tab:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(229, 168, 35, 0.4);
+}
+
+.admin-game-tab.active {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-readable);
+  border-color: var(--color-accent);
+}
+
+/* Sección de Edición */
+.admin-card-section {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.admin-section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.admin-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.admin-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Tabla de descargas */
+.admin-downloads-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-downloads-table th {
+  text-align: left;
+  padding: 10px 12px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-downloads-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+.admin-row-editing {
+  background-color: var(--color-surface-hover);
+}
+
+.admin-table-input {
+  padding: 6px 10px !important;
+  font-size: 0.8125rem !important;
+  height: auto !important;
+  width: 100%;
+}
+
+.admin-btn-icon-primary {
+  background: none;
+  border: none;
+  color: var(--color-accent-readable);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.admin-btn-icon-primary:hover {
+  background-color: var(--color-accent-soft);
+}
+
+.admin-btn-icon-success {
+  background: none;
+  border: none;
+  color: #10b981;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.admin-btn-icon-success:hover {
+  background-color: rgba(16, 185, 129, 0.15);
+}
+
+.admin-btn-icon-secondary {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.admin-btn-icon-secondary:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.admin-btn-icon-danger {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+}
+
+.admin-btn-icon-danger:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Galería de capturas admin */
+.admin-screenshots-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.admin-shot-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: #000;
+}
+
+.admin-shot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-shot-delete {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(239, 68, 68, 0.85);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.admin-shot-delete:hover {
+  transform: scale(1.1);
+  background-color: #ef4444;
+}
+
+.admin-success-banner {
+  background-color: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Toolbar y Tabs del listado de tarjetas --- */
+.admin-toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.admin-tabs-group {
+  display: inline-flex;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  gap: 4px;
+}
+
+.admin-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.admin-filter-pill:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-hover);
+}
+
+.admin-filter-pill.active {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-readable);
+}
+
+.admin-pill-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.admin-filter-pill.active .admin-pill-count {
+  background-color: var(--color-accent);
+  color: #000;
+}
+
+/* --- Tarjetas en Admin --- */
+.admin-cards-grid {
+  margin-top: 8px;
+}
+
+.admin-game-card {
+  position: relative;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  user-select: none;
+  cursor: grab;
+}
+
+.admin-game-card:active {
+  cursor: grabbing;
+}
+
+/* Espacio reservado (slot) en el grid mientras se desplaza la tarjeta */
+.admin-card-placeholder-slot {
+  min-height: 280px;
+  border: 2px dashed var(--color-accent) !important;
+  background: rgba(239, 68, 68, 0.04) !important;
+  border-radius: var(--radius-lg);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.06);
+  cursor: grabbing !important;
+}
+
+.admin-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--color-accent);
+  padding: 24px;
+  text-align: center;
+  user-select: none;
+}
+
+.admin-placeholder-icon {
+  opacity: 0.85;
+  animation: pulse-subtle 1.8s infinite ease-in-out;
+}
+
+.admin-placeholder-text {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.admin-placeholder-subtext {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Tarjeta flotante 100% nítida que sigue al ratón sin transparencias */
+.admin-floating-drag-card {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999999;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-card);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(239, 68, 68, 0.35);
+  transform: rotate(2deg) scale(1.02);
+  opacity: 1 !important;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-floating-drag-card .game-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.admin-floating-drag-card .game-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.admin-floating-drag-card .game-card-body {
+  padding: 16px;
+  background-color: var(--color-bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-drag-hint {
+  user-select: none;
+}
+
+.admin-drag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background-color: rgba(15, 23, 42, 0.9);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  cursor: grab;
+  backdrop-filter: blur(4px);
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.admin-drag-badge:hover {
+  background-color: rgba(15, 23, 42, 0.98);
+  transform: scale(1.05);
+}
+
+.admin-game-card.is-archived {
+  opacity: 0.78;
+  border-style: dashed;
+}
+
+.admin-game-card.is-archived:hover {
+  opacity: 1;
+}
+
+.admin-archived-stamp {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(239, 68, 68, 0.92);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.admin-card-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.admin-card-action-btn {
+  flex: 1;
+  padding: 8px 12px !important;
+  font-size: 0.8125rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
+.admin-card-action-btn.btn-archive:hover {
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+}
+
+.admin-card-action-btn.btn-activate:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #10b981;
+}
+
+.admin-card-delete-icon {
+  flex-shrink: 0;
+  padding: 8px !important;
+  border-radius: var(--radius-sm);
+}
+
+.admin-empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  background-color: var(--color-bg-card);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+}
+
+/* --- Encabezado del editor --- */
+.admin-editor-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-editor-topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-editor-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* --- Modal de Edición en Vivo --- */
+.admin-live-backdrop {
+  z-index: 120;
+}
+
+.admin-live-modal-card {
+  max-width: 860px;
+  max-height: 94vh;
+}
+
+.admin-live-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.admin-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-accent-readable);
+  background-color: var(--color-accent-soft);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.admin-live-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.admin-live-msg.success {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.admin-live-msg.error {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.admin-live-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-live-save-btn {
+  padding: 7px 16px !important;
+  font-size: 0.8125rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.admin-live-close-btn {
+  position: static !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: var(--radius-sm) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+.admin-live-close-btn:hover {
+  color: #ffffff !important;
+  background-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* Banner interactivo */
+.admin-live-banner {
+  position: relative;
+}
+
+.admin-banner-change-wrap {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+}
+
+.admin-banner-edit-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(9, 13, 22, 0.85);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+}
+
+.admin-banner-edit-trigger:hover {
+  background-color: var(--color-accent);
+  color: #000;
+  border-color: var(--color-accent);
+}
+
+.admin-banner-input-popover {
+  margin-top: 8px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  box-shadow: var(--shadow-modal);
+  width: 320px;
+}
+
+/* Campos editables en cabecera */
+.admin-live-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-status-pill-btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  transition: transform var(--transition-fast);
+}
+
+.admin-status-pill-btn:hover {
+  transform: scale(1.04);
+}
+
+.admin-inline-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: rgba(9, 13, 22, 0.85);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  color: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  max-width: 110px;
+}
+
+.admin-inline-pill:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  border-style: solid;
+}
+
+.admin-live-title-input {
+  width: 100%;
+  background: transparent;
+  border: 1px dashed rgba(229, 168, 35, 0.5);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 6px;
+  transition: border-color var(--transition-fast);
+}
+
+[data-theme="light"] .admin-live-title-input {
+  color: #000000;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.admin-live-title-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  border-style: solid;
+}
+
+/* Campos editables en especificaciones */
+.admin-spec-input {
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  width: 100%;
+  margin-top: 4px;
+}
+
+.admin-spec-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  border-style: solid;
+}
+
+/* Sinopsis en vivo */
+.admin-live-synopsis {
+  width: 100%;
+  min-height: 140px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  resize: vertical;
+}
+
+[data-theme="light"] .admin-live-synopsis {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.admin-live-synopsis:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  border-style: solid;
+}
+
+/* Descargas y Agradecimientos en modal admin */
+.admin-dl-card-editing,
+.admin-ack-card-editing {
+  border-color: var(--color-accent) !important;
+  background-color: var(--color-surface-hover) !important;
+}
+
+.admin-add-dl-box {
+  background-color: rgba(0, 0, 0, 0.12);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+/* Capturas en vivo */
+.admin-live-shots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.admin-live-shot-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.admin-live-add-shot-card {
+  aspect-ratio: 4 / 3;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+}
+
+/* --- Gestión de Características Destacadas en Admin --- */
+.admin-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-feature-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.admin-feature-row:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.admin-feature-text {
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.admin-feature-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.admin-feature-btn {
+  padding: 5px !important;
+  border-radius: var(--radius-sm);
+}
+
+.admin-feature-row-editing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 768px) {
+  .admin-grid-2,
+  .admin-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-navbar {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .admin-navbar-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
