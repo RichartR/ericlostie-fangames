@@ -11,15 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Supabase REST API
+        env:
+          SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: |
-          URL="${{ secrets.VITE_SUPABASE_URL || 'https://caogguzuymqgnulrweab.supabase.co' }}"
-          KEY="${{ secrets.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhb2dndXp1eW1xZ251bHJ3ZWFiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2MjQwMTAsImV4cCI6MjEwNzIwMDAxMH0.yw5OkSmKDnP3LAyh0xbtaKW8l4_l8uMfLrjlJPbpE3Y' }}"
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "Error: Falta configurar VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY en los Secrets de GitHub."
+            echo "Ve a Settings > Secrets and variables > Actions y añádelos."
+            exit 1
+          fi
           
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$URL/rest/v1/games?select=id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY")
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$SUPABASE_URL/rest/v1/games?select=id&limit=1" -H "apikey: $SUPABASE_ANON_KEY" -H "Authorization: Bearer $SUPABASE_ANON_KEY")
           
           if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 300 ]; then
-            echo "Ping exitoso a Supabase (HTTP $RESPONSE). Proyecto activo."
+            echo "Ping exitoso a Supabase (HTTP $RESPONSE). Proyecto activo y despierto."
           else
-            echo "Aviso: Respuesta HTTP $RESPONSE al conectar con Supabase."
+            echo "Error: Respuesta HTTP $RESPONSE al conectar con Supabase."
             exit 1
           fi
