@@ -131,7 +131,7 @@ export default function Navbar({ theme = 'dark', onToggleTheme }) {
                 width="22"
                 height="22"
               />
-              <span>{isLight ? 'Activar Modo Noche (Piedra Noche)' : 'Activar Modo Día (Piedra Día)'}</span>
+              <span>{isLight ? 'Activar Modo Oscuro' : 'Activar Modo Claro'}</span>
             </button>
           </div>
 
