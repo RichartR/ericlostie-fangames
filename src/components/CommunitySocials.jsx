@@ -7,21 +7,21 @@ const SOCIAL_LINKS = [
     name: 'X (Twitter)',
     handle: '@Eric_Lostie',
     url: 'https://twitter.com/Eric_Lostie',
-    description: 'Novedades diarias, capturas de desarrollo y anuncios oficiales.',
+    description: 'Novedades, capturas de desarrollo y anuncios oficiales.',
     color: '#1DA1F2'
   },
   {
     name: 'Discord Oficial',
     handle: 'Comunidad Lostie',
     url: 'https://discord.gg/3QkYCwn5bd',
-    description: 'La comunidad más grande de jugadores, soporte técnico, guías y debate.',
+    description: 'Comunidad en discord, ayuda con los juegos, guías y debate.',
     color: '#5865F2'
   },
   {
     name: 'YouTube',
     handle: 'Eric Lostie',
     url: 'https://www.youtube.com/channel/UCJirVLggnKmNw2IuZUuD4Rg',
-    description: 'Trailers oficiales, gameplays, directos y directrices de desarrollo.',
+    description: 'Trailers, gameplays, y tutoriales de makeo.',
     color: '#FF0000'
   },
   {
