@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Gamepad2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 export default function Navbar({ theme = 'dark', onToggleTheme }) {
@@ -90,7 +90,7 @@ export default function Navbar({ theme = 'dark', onToggleTheme }) {
             type="button"
             className="theme-toggle-btn stone-toggle-btn"
             onClick={onToggleTheme}
-            aria-label={isLight ? 'Activar Modo Noche (Piedra Noche)' : 'Activar Modo Día (Piedra Día)'}
+            aria-label={isLight ? 'Activar Modo Oscuro' : 'Activar Modo Claro'}
             title={isLight ? 'Piedra Noche: Activar Modo Noche' : 'Piedra Día: Activar Modo Día'}
           >
             <img
@@ -100,15 +100,6 @@ export default function Navbar({ theme = 'dark', onToggleTheme }) {
               width="24"
               height="24"
             />
-          </button>
-
-          <button 
-            type="button" 
-            className="header-cta" 
-            onClick={() => scrollToSection('juegos')}
-          >
-            <Gamepad2 size={18} aria-hidden="true" />
-            <span>Ver Juegos</span>
           </button>
 
           {/* Mobile Menu Toggle Button */}
