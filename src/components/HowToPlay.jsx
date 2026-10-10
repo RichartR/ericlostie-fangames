@@ -17,7 +17,7 @@ export default function HowToPlay() {
           <p className="how-to-play-lead">
             Todos los fangames creados por Eric Lostie son 100% gratuitos y funcionan de forma nativa
             en ordenadores Windows sin requerir ningún emulador. Si deseas jugar en tu teléfono Android,
-            puedes hacerlo mediante Kirin o JoiPlay.
+            puedes hacerlo mediante Kirin.
           </p>
         </div>
 

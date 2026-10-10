@@ -21,7 +21,7 @@
   - Gestor de descargas multiespejo (Mega, Mediafire, Google Drive) clasificadas por plataforma.
   - Galería visual de capturas con visor lightbox responsive.
   - Pestaña de agradecimientos comunitarios (artistas, compositores, testers).
-- **Guía de Instalación Dinámica**: Instrucciones paso a paso para jugar en PC (nativo / launcher) y Android (Kirin / JoiPlay).
+- **Guía de Instalación Dinámica**: Instrucciones paso a paso para jugar en PC (nativo / launcher) y Android (Kirin).
 - **Diseño 100% Vanilla CSS**: Sin sobrecarga de frameworks utilitarios, sistema de diseño basado en variables CSS, microanimaciones fluidas y tipografía moderna.
 
 ### ⚡ CMS Visual en Vivo para Administración (`#admin`)

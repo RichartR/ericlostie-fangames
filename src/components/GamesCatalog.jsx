@@ -152,10 +152,6 @@ export default function GamesCatalog({ games, loading = false, onSelectGame }) {
                 <div className="game-card-body">
                   <div className="game-meta-row">
                     <span className="game-year">{game.year}</span>
-                    <span className="game-lang-tag" title={`Idioma: ${(game.languages || ['Español']).join(', ')}`}>
-                      <Globe size={13} aria-hidden="true" />
-                      <span>{(game.languages || ['Español']).join(' / ')}</span>
-                    </span>
                     <span className="game-platforms">
                       <Monitor size={14} aria-hidden="true" />
                       <span>PC</span>
@@ -165,7 +161,13 @@ export default function GamesCatalog({ games, loading = false, onSelectGame }) {
                     </span>
                   </div>
 
-                  <h3 className="game-card-title">{game.title}</h3>
+                  <div className="game-card-title-row">
+                    <h3 className="game-card-title">{game.title}</h3>
+                    <span className="game-lang-tag" title={`Idioma: ${(game.languages || ['Español']).join(', ')}`}>
+                      <Globe size={13} aria-hidden="true" />
+                      <span>{(game.languages || ['Español']).join(' / ')}</span>
+                    </span>
+                  </div>
 
                   <p className="game-card-desc">{game.shortDescription}</p>
 

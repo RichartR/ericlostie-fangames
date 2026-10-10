@@ -153,10 +153,6 @@ export default function AdminGameCards({
                   <div className="game-card-body">
                     <div className="game-meta-row">
                       <span className="game-year">{game.year}</span>
-                      <span className="game-lang-tag" title={`Idioma: ${(game.languages || ['Español']).join(', ')}`}>
-                        <Globe size={13} aria-hidden="true" />
-                        <span>{(game.languages || ['Español']).join(' / ')}</span>
-                      </span>
                       <span className="game-platforms">
                         <Monitor size={14} aria-hidden="true" />
                         <span>PC</span>
@@ -166,7 +162,13 @@ export default function AdminGameCards({
                       </span>
                     </div>
 
-                    <h3 className="game-card-title">{game.title}</h3>
+                    <div className="game-card-title-row">
+                      <h3 className="game-card-title">{game.title}</h3>
+                      <span className="game-lang-tag" title={`Idioma: ${(game.languages || ['Español']).join(', ')}`}>
+                        <Globe size={13} aria-hidden="true" />
+                        <span>{(game.languages || ['Español']).join(' / ')}</span>
+                      </span>
+                    </div>
                     <p className="game-card-desc">{game.shortDescription}</p>
 
                     {/* Barra de acciones de administración */}
@@ -247,10 +249,6 @@ export default function AdminGameCards({
               <div className="game-card-body">
                 <div className="game-meta-row">
                   <span className="game-year">{draggedGame.year}</span>
-                  <span className="game-lang-tag">
-                    <Globe size={13} aria-hidden="true" />
-                    <span>{(draggedGame.languages || ['Español']).join(' / ')}</span>
-                  </span>
                   <span className="game-platforms">
                     <Monitor size={14} aria-hidden="true" />
                     <span>PC</span>
@@ -259,7 +257,13 @@ export default function AdminGameCards({
                     <span>Android</span>
                   </span>
                 </div>
-                <h3 className="game-card-title">{draggedGame.title}</h3>
+                <div className="game-card-title-row">
+                  <h3 className="game-card-title">{draggedGame.title}</h3>
+                  <span className="game-lang-tag">
+                    <Globe size={13} aria-hidden="true" />
+                    <span>{(draggedGame.languages || ['Español']).join(' / ')}</span>
+                  </span>
+                </div>
                 <p className="game-card-desc">{draggedGame.shortDescription}</p>
               </div>
             </div>
