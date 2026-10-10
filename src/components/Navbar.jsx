@@ -91,7 +91,7 @@ export default function Navbar({ theme = 'dark', onToggleTheme }) {
             className="theme-toggle-btn stone-toggle-btn"
             onClick={onToggleTheme}
             aria-label={isLight ? 'Activar Modo Oscuro' : 'Activar Modo Claro'}
-            title={isLight ? 'Piedra Noche: Activar Modo Noche' : 'Piedra Día: Activar Modo Día'}
+            title={isLight ? 'Activar Modo Oscuro' : 'Activar Modo Claro'}
           >
             <img
               src={isLight ? '/piedra-noche.png' : '/piedra-dia.png'}
