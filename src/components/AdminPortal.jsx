@@ -27,10 +27,12 @@ import AdminNavbar from './admin/AdminNavbar';
 import AdminGameCards from './admin/AdminGameCards';
 import AdminLiveEditModal from './admin/AdminLiveEditModal';
 import AdminCreateModal from './admin/AdminCreateModal';
+import { useConfirm } from '../context/ConfirmContext';
 import './GameDetailModal.css';
 import './AdminPortal.css';
 
 export default function AdminPortal({ games, onDataUpdated, onClose }) {
+  const confirm = useConfirm();
   const [session, setSession] = useState(null);
   const [loadingSession, setLoadingSession] = useState(true);
 
@@ -216,6 +218,15 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
   };
 
   const handleLogout = async () => {
+    const ok = await confirm({
+      title: '¿Cerrar sesión de administrador?',
+      message: '¿Estás seguro de que deseas salir del panel de administración?',
+      confirmText: 'Cerrar sesión',
+      cancelText: 'Permanecer',
+      variant: 'warning',
+    });
+    if (!ok) return;
+
     try {
       await signOutAdmin();
       setSession(null);
@@ -577,9 +588,12 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
       }
 
       await onDataUpdated();
-      setSaveMessage(`¡Juego "${newGameForm.title}" creado con éxito con todos sus datos y enlaces!`);
+      setSaveMessage(`¡Juego "${newGameForm.title}" creado con éxito!`);
       setSelectedGameId(created.id);
-      setViewMode('edit'); // Abre directamente el modal en vivo del nuevo juego
+      setViewMode('cards'); // Cierra el modal de creación y vuelve al listado de tarjetas
+      setCreateDownloads([]);
+      setCreateScreenshots([]);
+      setCreateAcknowledgements([]);
       setTimeout(() => setSaveMessage(''), 4000);
     } catch (err) {
       console.error('Error al crear juego completo:', err);
@@ -607,9 +621,16 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
 
   // Borrar juego
   const handleDeleteGame = async (game) => {
-    if (!confirm(`¿Estás SEGURO de que deseas eliminar permanentemente "${game.title}" y todos sus servidores y capturas? Esta acción es irreversible.`)) {
-      return;
-    }
+    const ok = await confirm({
+      title: '¿Eliminar juego por completo?',
+      message: `Esta acción eliminará de forma permanente "${game.title}" junto con todos sus servidores de descarga y capturas asociadas. Esta acción no se puede deshacer.`,
+      confirmText: 'Sí, eliminar juego',
+      cancelText: 'Cancelar',
+      variant: 'danger',
+      requireKeyword: 'borrar',
+    });
+    if (!ok) return;
+
     try {
       await deleteGame(game.id);
       await onDataUpdated();
@@ -660,7 +681,15 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
   };
 
   const handleDeleteDownload = async (downloadId) => {
-    if (!confirm('¿Estás seguro de que deseas eliminar este enlace de descarga?')) return;
+    const ok = await confirm({
+      title: '¿Eliminar servidor de descarga?',
+      message: '¿Estás seguro de que deseas eliminar este enlace de descarga?',
+      confirmText: 'Eliminar enlace',
+      cancelText: 'Cancelar',
+      variant: 'danger',
+    });
+    if (!ok) return;
+
     try {
       await deleteDownload(downloadId);
       await onDataUpdated();
@@ -742,7 +771,15 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
   };
 
   const handleDeleteScreenshot = async (shotId) => {
-    if (!confirm('¿Eliminar esta captura de pantalla?')) return;
+    const ok = await confirm({
+      title: '¿Eliminar captura de pantalla?',
+      message: '¿Estás seguro de que deseas eliminar esta imagen de la galería de capturas?',
+      confirmText: 'Eliminar captura',
+      cancelText: 'Cancelar',
+      variant: 'danger',
+    });
+    if (!ok) return;
+
     try {
       await deleteScreenshot(shotId);
       await onDataUpdated();
@@ -779,7 +816,15 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
   };
 
   const handleDeleteAcknowledgement = async (ackId) => {
-    if (!confirm('¿Eliminar este agradecimiento?')) return;
+    const ok = await confirm({
+      title: '¿Eliminar agradecimiento?',
+      message: '¿Estás seguro de que deseas eliminar esta mención o agradecimiento?',
+      confirmText: 'Eliminar',
+      cancelText: 'Cancelar',
+      variant: 'danger',
+    });
+    if (!ok) return;
+
     try {
       await deleteAcknowledgement(ackId);
       await onDataUpdated();
@@ -887,7 +932,14 @@ export default function AdminPortal({ games, onDataUpdated, onClose }) {
   };
 
   const handleDeleteFeature = async (feat) => {
-    if (!confirm(`¿Eliminar la característica "${feat.text}"?`)) return;
+    const ok = await confirm({
+      title: '¿Eliminar característica?',
+      message: `¿Estás seguro de que deseas eliminar la característica "${feat.text}"?`,
+      confirmText: 'Eliminar',
+      cancelText: 'Cancelar',
+      variant: 'danger',
+    });
+    if (!ok) return;
 
     try {
       if (currentEditingGameIdRef.current === activeGame.id) {

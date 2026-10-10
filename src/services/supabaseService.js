@@ -18,6 +18,11 @@ const supabase = (supabaseUrl && supabaseAnonKey)
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
 
+// Capa de caché en memoria y sesión para evitar peticiones redundantes
+let inMemoryGamesCache = null;
+const CACHE_KEY = 'el_games_cache_v1';
+const CACHE_EXPIRY_MS = 60 * 60 * 1000; // 1 hora de persistencia para visitantes regulares
+
 /**
  * Mapea el modelo relacional de Supabase al contrato que consumen los componentes.
  */
@@ -101,11 +106,32 @@ function mapGameFromDatabase(dbGame) {
 /**
  * Obtiene el listado completo de juegos desde la base de datos de Supabase.
  */
-export async function fetchAllGames() {
+export async function fetchAllGames(forceFresh = false) {
   if (!supabase) {
     throw new Error('[supabaseService] Cliente de Supabase no inicializado. Revisa el archivo .env.');
   }
 
+  // 1. Servir desde caché si está disponible y no se fuerza recarga
+  if (!forceFresh && inMemoryGamesCache) {
+    return inMemoryGamesCache;
+  }
+
+  if (!forceFresh) {
+    try {
+      const cached = sessionStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { data, timestamp } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_EXPIRY_MS && Array.isArray(data)) {
+          inMemoryGamesCache = data;
+          return data;
+        }
+      }
+    } catch {
+      // Continuar con fetch si la caché falla
+    }
+  }
+
+  // 2. Consulta a la base de datos
   const { data, error } = await supabase
     .from('games')
     .select(`
@@ -122,7 +148,19 @@ export async function fetchAllGames() {
     throw error;
   }
 
-  return (data || []).map(mapGameFromDatabase);
+  const mapped = (data || []).map(mapGameFromDatabase);
+  inMemoryGamesCache = mapped;
+
+  try {
+    sessionStorage.setItem(CACHE_KEY, JSON.stringify({
+      data: mapped,
+      timestamp: Date.now()
+    }));
+  } catch {
+    // Almacenamiento lleno o no disponible
+  }
+
+  return mapped;
 }
 
 /**
@@ -185,8 +223,44 @@ export function onAuthStateChange(callback) {
 }
 
 /**
- * --- OPERACIONES CRUD DE ADMINISTRACIÓN ---
+ * Invalidador de caché y propagación de cambios en tiempo real:
+ * 1. Notifica a otras pestañas activas para que recarguen datos instantáneamente.
+ * 2. Si existe un webhook de revalidación/redeploy de CDN de Vercel (VITE_VERCEL_DEPLOY_HOOK), lo dispara automáticamente.
  */
+export async function clearGamesCache() {
+  inMemoryGamesCache = null;
+  try {
+    sessionStorage.removeItem(CACHE_KEY);
+    localStorage.setItem('el_last_update', Date.now().toString());
+  } catch {
+    // Si almacenamiento no está disponible en el entorno
+  }
+
+  // Notificación opcional al deploy hook de Vercel si está configurado en las variables de entorno
+  const deployHook = import.meta.env.VITE_VERCEL_DEPLOY_HOOK;
+  if (deployHook) {
+    try {
+      await fetch(deployHook, { method: 'POST' });
+    } catch (err) {
+      console.warn('[supabaseService] Error al notificar deploy hook de Vercel:', err);
+    }
+  }
+}
+
+/**
+ * Actualiza la marca temporal 'updated_at' del juego cuando se modifican sus relaciones (descargas, capturas, características, etc.).
+ */
+async function touchGameUpdated(gameId) {
+  if (!supabase || !gameId) return;
+  try {
+    await supabase
+      .from('games')
+      .update({ updated_at: new Date().toISOString() })
+      .eq('id', gameId);
+  } catch (err) {
+    console.warn('[supabaseService] Error al actualizar marca de tiempo del juego:', err);
+  }
+}
 
 export async function createGame(gameData) {
   if (!supabase) throw new Error('Supabase no inicializado');

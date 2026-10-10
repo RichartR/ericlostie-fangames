@@ -31,9 +31,9 @@ export default function App() {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  const loadGames = async () => {
+  const loadGames = async (forceFresh = false) => {
     try {
-      const data = await fetchAllGames();
+      const data = await fetchAllGames(forceFresh);
       setGames(data);
       return data;
     } catch (err) {
@@ -57,6 +57,16 @@ export default function App() {
       .finally(() => {
         setLoading(false);
       });
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'el_last_update') {
+        loadGames(true);
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
   useEffect(() => {
@@ -103,7 +113,7 @@ export default function App() {
     return (
       <AdminPortal
         games={games}
-        onDataUpdated={loadGames}
+        onDataUpdated={() => loadGames(true)}
         onClose={() => {
           window.history.pushState(null, '', window.location.pathname);
           setIsAdminRoute(false);
