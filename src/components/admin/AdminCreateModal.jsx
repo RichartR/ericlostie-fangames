@@ -52,7 +52,7 @@ export default function AdminCreateModal({
         {/* Barra superior de herramientas de creación */}
         <div className="admin-live-modal-bar">
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span className="admin-live-tag" style={{ backgroundColor: 'var(--color-accent)', color: '#0b0f19' }}>
+            <span className="admin-live-tag" style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-accent-text)' }}>
               CREAR NUEVO JUEGO
             </span>
             <span style={{ fontSize: '0.8125rem', color: 'var(--color-text-muted)' }}>

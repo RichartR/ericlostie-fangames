@@ -6,42 +6,42 @@
    =================================================================== */
 
 :root {
-  /* Tema Oscuro por defecto (Gaming con dorado insignia de Volcarona y Blog) */
-  --color-bg-base: #0b0f19;
-  --color-bg-surface: #111827;
-  --color-bg-card: #141d2e;
-  --color-bg-card-hover: #19243a;
-  --color-bg-elevated: #1f2b42;
+  /* Tema Oscuro por defecto (#4d4552 base) */
+  --color-bg-base: #4d4552;
+  --color-bg-surface: #564d5c;
+  --color-bg-card: #5c5362;
+  --color-bg-card-hover: #655c6c;
+  --color-bg-elevated: #6e6475;
 
-  --color-border: #1e293b;
-  --color-border-subtle: #162032;
+  --color-border: rgba(255, 255, 255, 0.14);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
   --color-border-focus: #e5a823;
 
   --color-accent: #e5a823;
   --color-accent-hover: #fed766;
-  --color-accent-soft: rgba(229, 168, 35, 0.16);
-  --color-accent-text: #0b0f19;
+  --color-accent-soft: rgba(229, 168, 35, 0.2);
+  --color-accent-text: #1a161d;
   --color-accent-readable: #fcd34d;
 
   --color-complete: #10b981;
-  --color-complete-soft: rgba(16, 185, 129, 0.12);
+  --color-complete-soft: rgba(16, 185, 129, 0.16);
   --color-dev: #38bdf8;
-  --color-dev-soft: rgba(56, 189, 248, 0.12);
+  --color-dev-soft: rgba(56, 189, 248, 0.16);
 
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
+  --color-text-primary: #fbfbfc;
+  --color-text-secondary: #dad4de;
+  --color-text-muted: #b2aab6;
 
-  --header-bg: #0b0f19;
-  --header-border: #1e293b;
-  --header-text: #f8fafc;
-  --header-text-muted: #94a3b8;
-  --header-scrolled-bg: #0b0f19;
+  --header-bg: var(--footer-bg);
+  --header-border: var(--color-border);
+  --header-text: #fbfbfc;
+  --header-text-muted: #dad4de;
+  --header-scrolled-bg: var(--footer-bg);
   --header-cta-bg: var(--color-accent);
-  --header-cta-text: #0b0f19;
+  --header-cta-text: #1a161d;
   --header-cta-hover: var(--color-accent-hover);
 
-  --footer-bg: #070a12;
+  --footer-bg: #3b3440;
 
   --watermark-opacity: 0.09;
   --watermark-filter: none;
