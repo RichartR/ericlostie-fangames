@@ -202,7 +202,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: linear-gradient(180deg, rgba(8, 12, 22, 0.72) 0%, rgba(8, 12, 22, 0) 100%);
+  background: linear-gradient(180deg, rgba(28, 22, 33, 0.72) 0%, rgba(28, 22, 33, 0) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -234,7 +234,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
-  background-color: rgba(9, 13, 22, 0.94);
+  background-color: rgba(32, 25, 37, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #f1f5f9;

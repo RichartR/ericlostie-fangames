@@ -126,11 +126,17 @@ export default function AdminLiveEditModal({
 
         {/* Cabecera con banner y campos directamente editables */}
         <div className="modal-banner-header admin-live-banner">
-          <img
-            src={formData.banner_url || activeGame.banner}
-            alt={`Banner de ${formData.title}`}
-            className="modal-banner-img"
-          />
+          {(formData.banner_url || activeGame.banner) ? (
+            <img
+              src={formData.banner_url || activeGame.banner}
+              alt={`Banner de ${formData.title}`}
+              className="modal-banner-img"
+            />
+          ) : (
+            <div className="admin-banner-placeholder-view">
+              <ImageIcon size={36} opacity={0.35} />
+            </div>
+          )}
           <div className="modal-banner-scrim" />
 
           {/* Botón para cambiar URL de la portada */}

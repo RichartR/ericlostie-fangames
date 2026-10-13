@@ -530,7 +530,7 @@
 
 .admin-filter-pill.active .admin-pill-count {
   background-color: var(--color-accent);
-  color: #000;
+  color: var(--color-accent-text);
 }
 
 /* --- Tarjetas en Admin --- */
@@ -648,9 +648,9 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background-color: rgba(15, 23, 42, 0.9);
-  color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.45);
+  background-color: rgba(32, 25, 37, 0.92);
+  color: var(--color-accent-readable);
+  border: 1px solid rgba(229, 168, 35, 0.45);
   font-size: 0.6875rem;
   font-weight: 800;
   padding: 3px 8px;
@@ -664,7 +664,7 @@
 }
 
 .admin-drag-badge:hover {
-  background-color: rgba(15, 23, 42, 0.98);
+  background-color: rgba(25, 19, 30, 0.98);
   transform: scale(1.05);
 }
 
@@ -857,11 +857,21 @@
   z-index: 10;
 }
 
+.admin-banner-placeholder-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-muted);
+}
+
 .admin-banner-edit-trigger {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: rgba(9, 13, 22, 0.85);
+  background-color: rgba(32, 25, 37, 0.88);
   color: #f1f5f9;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 6px 12px;
@@ -875,7 +885,7 @@
 
 .admin-banner-edit-trigger:hover {
   background-color: var(--color-accent);
-  color: #000;
+  color: var(--color-accent-text);
   border-color: var(--color-accent);
 }
 
@@ -916,7 +926,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
-  background-color: rgba(9, 13, 22, 0.85);
+  background-color: rgba(32, 25, 37, 0.88);
   border: 1px dashed rgba(255, 255, 255, 0.3);
   color: #f1f5f9;
   padding: 3px 8px;

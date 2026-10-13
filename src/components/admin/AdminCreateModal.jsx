@@ -102,11 +102,17 @@ export default function AdminCreateModal({
 
         {/* Cabecera con banner y campos editables directamente */}
         <div className="modal-banner-header admin-live-banner">
-          <img
-            src={newGameForm.banner_url || ''}
-            alt="Banner del nuevo juego"
-            className="modal-banner-img"
-          />
+          {newGameForm.banner_url ? (
+            <img
+              src={newGameForm.banner_url}
+              alt="Banner del nuevo juego"
+              className="modal-banner-img"
+            />
+          ) : (
+            <div className="admin-banner-placeholder-view">
+              <ImageIcon size={36} opacity={0.35} />
+            </div>
+          )}
           <div className="modal-banner-scrim" />
 
           {/* Botón para cambiar URL de la portada */}

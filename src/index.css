@@ -46,8 +46,8 @@
   --watermark-opacity: 0.09;
   --watermark-filter: none;
 
-  /* Patrón sutil para catálogo */
-  --catalog-pattern-opacity: 0.045;
+  /* Patrón sutil para catálogo y tarjetas */
+  --catalog-pattern-opacity: 0.085;
   --catalog-pattern-filter: none;
 
   /* Tipografías */
